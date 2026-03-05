@@ -6,7 +6,7 @@ export default function decorate(block) {
   const contentContainer = titleBlock.closest('div');
   if (!contentContainer) return;
 
-  contentContainer.classList.add('earth-block__content-wrapper');
+  contentContainer.classList.add('earth-block-content-wrapper');
 
   const paragraphs = contentContainer.querySelectorAll('p');
   if (paragraphs.length < 3) return;
@@ -19,14 +19,14 @@ export default function decorate(block) {
 
   // Encapsulate header content
   const divContent = document.createElement('div');
-  divContent.classList.add('earth-block__information-container');
+  divContent.classList.add('earth-block-information-container');
   divContent.appendChild(titleBlock);
   divContent.appendChild(descriptionParagraph);
   contentContainer.appendChild(divContent);
 
   // Build footer
   const footerContent = document.createElement('div');
-  footerContent.classList.add('earth-block__footer');
+  footerContent.classList.add('earth-block-footer');
   footerContent.appendChild(interactiveParagraph);
   footerContent.appendChild(hiddenParagraph);
   contentContainer.appendChild(footerContent);
@@ -54,7 +54,7 @@ export default function decorate(block) {
   hiddenParagraph.appendChild(innerSpan);
 
   // Set initial collapsed state (CSS handles the animation)
-  hiddenParagraph.classList.add('earth-block__hidden-paragraph', 'collapsed');
+  hiddenParagraph.classList.add('earth-block-hidden-paragraph', 'collapsed');
   hiddenParagraph.classList.remove('invisible');
 
   // Toggle visibility with animation
@@ -71,7 +71,7 @@ export default function decorate(block) {
   if (!cardContainer) return;
 
   const themeToggle = document.createElement('button');
-  themeToggle.classList.add('earth-block__theme-toggle');
+  themeToggle.classList.add('earth-block-theme-toggle');
   themeToggle.setAttribute('type', 'button');
   themeToggle.setAttribute('aria-label', 'Toggle dark mode');
   themeToggle.setAttribute('title', 'Toggle dark mode');
@@ -81,7 +81,7 @@ export default function decorate(block) {
     const isDarkToggle = block.classList.toggle('dark');
 
     themeToggle.textContent = isDarkToggle ? '☀️' : '🌙';
-    themeToggle.classList.add('earth-block__theme-toggle');
+    themeToggle.classList.add('earth-block-theme-toggle');
   });
 
   cardContainer.appendChild(themeToggle);
