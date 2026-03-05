@@ -2,9 +2,14 @@
 
 Custom block built with Adobe EDS that displays an interactive information card about Earth, featuring animated content reveal, dark mode support, and responsive design.
 
+## Sites
+
+- [Preview Site](https://main--aem-boilerplate--renato6gs.aem.page/)
+- [Publish Site](https://main--aem-boilerplate--renato6gs.aem.live/)
+
 ## Demo
 
-📹 [Video demo](LINK_HERE)
+[Video demo](https://drive.google.com/file/d/1L8w0CLc2vFMUFh-lmP7LAWU7Y66cdcdX/view?usp=sharing)
 
 ## Features
 
