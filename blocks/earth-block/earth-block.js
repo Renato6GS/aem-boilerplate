@@ -1,88 +1,62 @@
 /* eslint-disable linebreak-style */
 export default function decorate(block) {
-  const titleBlock = block.querySelector('h2');
+  const CONFIG = {
+    TITLE_BLOCK: 'h2',
+    DIV: 'div',
+    CONTENT_CONTAINER_CLASS: 'content-container',
+    IMAGE_CONTAINER_CLASS: 'image-container',
+    INTERACTIVE_ELEMENT_CLASS: 'interactive-element',
+    BUTTON: 'button',
+    EXPAND_BUTTON_CLASS: 'expand-btn',
+    HIDDEN_CONTENT_CLASS: 'hidden-content',
+    HIDDEN_CLASS: 'hidden',
+    HIDDEN_CONTENT_SELECTOR: ':scope > div:last-child > div:last-child',
+    EXPAND_SYMBOL: '+',
+    COLLAPSE_SYMBOL: '−',
+    ARIA_EXPANDED: 'aria-expanded',
+    ARIA_LABEL: 'aria-label',
+    ARIA_LABEL_VALUE: 'Expand content',
+    ATTR_TYPE: 'type',
+    ATTR_TITLE: 'title',
+    TITLE_SHOW: 'Show content',
+    TITLE_HIDE: 'Hide content',
+  };
+
+  const titleBlock = block.querySelector(CONFIG.TITLE_BLOCK);
   if (!titleBlock) return;
 
-  const contentContainer = titleBlock.closest('div');
+  const contentContainer = titleBlock.closest(CONFIG.DIV);
   if (!contentContainer) return;
 
-  contentContainer.classList.add('earth-block-content-wrapper');
+  contentContainer.classList.add(CONFIG.CONTENT_CONTAINER_CLASS);
 
-  const paragraphs = contentContainer.querySelectorAll('p');
-  if (paragraphs.length < 3) return;
+  const imageContainer = contentContainer.previousElementSibling;
+  if (!imageContainer) return;
 
-  const descriptionParagraph = paragraphs[0];
-  const interactiveParagraph = paragraphs[1];
-  const hiddenParagraph = paragraphs[2];
+  imageContainer.classList.add(CONFIG.IMAGE_CONTAINER_CLASS);
 
-  if (!interactiveParagraph.textContent.includes('+')) return;
+  const lastElement = contentContainer.lastElementChild;
+  if (lastElement.length === 0) return;
 
-  // Encapsulate header content
-  const divContent = document.createElement('div');
-  divContent.classList.add('earth-block-information-container');
-  divContent.appendChild(titleBlock);
-  divContent.appendChild(descriptionParagraph);
-  contentContainer.appendChild(divContent);
+  lastElement.classList.add(CONFIG.INTERACTIVE_ELEMENT_CLASS);
 
-  // Build footer
-  const footerContent = document.createElement('div');
-  footerContent.classList.add('earth-block-footer');
-  footerContent.appendChild(interactiveParagraph);
-  footerContent.appendChild(hiddenParagraph);
-  contentContainer.appendChild(footerContent);
+  const button = document.createElement(CONFIG.BUTTON);
+  button.textContent = CONFIG.EXPAND_SYMBOL;
+  button.classList.add(CONFIG.EXPAND_BUTTON_CLASS);
+  button.setAttribute(CONFIG.ARIA_EXPANDED, 'false');
+  button.setAttribute(CONFIG.ARIA_LABEL, CONFIG.ARIA_LABEL_VALUE);
+  button.setAttribute(CONFIG.ATTR_TYPE, CONFIG.BUTTON);
+  button.setAttribute(CONFIG.ATTR_TITLE, CONFIG.TITLE_SHOW);
+  lastElement.appendChild(button);
 
-  // Separate text from button marker
-  const text = interactiveParagraph.textContent.replace('+', '').trim();
-  interactiveParagraph.textContent = text;
-
-  // Create toggle button. It always shows "+" and rotates via CSS
-  const button = document.createElement('button');
-  button.textContent = '+';
-  button.classList.add('expand-btn');
-  button.setAttribute('aria-expanded', 'false');
-  button.setAttribute('aria-label', 'Expand content');
-  button.setAttribute('type', 'button');
-  button.setAttribute('title', 'Show population');
-  interactiveParagraph.appendChild(button);
-
-  // Wrap hidden content in a span for the grid animation
-  const hiddenText = hiddenParagraph.textContent;
-  hiddenParagraph.textContent = '';
-
-  const innerSpan = document.createElement('span');
-  innerSpan.textContent = hiddenText;
-  hiddenParagraph.appendChild(innerSpan);
-
-  // Set initial collapsed state (CSS handles the animation)
-  hiddenParagraph.classList.add('earth-block-hidden-paragraph', 'collapsed');
-  hiddenParagraph.classList.remove('invisible');
-
-  // Toggle visibility with animation
-  button.addEventListener('click', () => {
-    const isCollapsed = hiddenParagraph.classList.toggle('collapsed');
-
-    button.setAttribute('aria-expanded', String(!isCollapsed));
-    button.setAttribute('title', isCollapsed ? 'Show population' : 'Hide population');
-  });
-
-  // Theme toggle button
-  const isDark = block.classList.contains('dark');
-  const cardContainer = block.querySelector(':scope > div');
-  if (!cardContainer) return;
-
-  const themeToggle = document.createElement('button');
-  themeToggle.classList.add('earth-block-theme-toggle');
-  themeToggle.setAttribute('type', 'button');
-  themeToggle.setAttribute('aria-label', 'Toggle dark mode');
-  themeToggle.setAttribute('title', 'Toggle dark mode');
-  themeToggle.textContent = isDark ? '☀️' : '🌙';
-
-  themeToggle.addEventListener('click', () => {
-    const isDarkToggle = block.classList.toggle('dark');
-
-    themeToggle.textContent = isDarkToggle ? '☀️' : '🌙';
-    themeToggle.classList.add('earth-block-theme-toggle');
-  });
-
-  cardContainer.appendChild(themeToggle);
+  const hiddenContent = block.querySelector(CONFIG.HIDDEN_CONTENT_SELECTOR);
+  if (hiddenContent) {
+    hiddenContent.classList.add(CONFIG.HIDDEN_CONTENT_CLASS, CONFIG.HIDDEN_CLASS);
+    button.addEventListener('click', () => {
+      const isHidden = hiddenContent.classList.toggle(CONFIG.HIDDEN_CLASS);
+      button.textContent = isHidden ? CONFIG.EXPAND_SYMBOL : CONFIG.COLLAPSE_SYMBOL;
+      button.setAttribute(CONFIG.ARIA_EXPANDED, String(!isHidden));
+      button.setAttribute(CONFIG.ATTR_TITLE, isHidden ? CONFIG.TITLE_SHOW : CONFIG.TITLE_HIDE);
+    });
+  }
 }

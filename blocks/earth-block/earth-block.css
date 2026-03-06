@@ -1,317 +1,114 @@
 .earth-block {
-    /* Design Tokens */
-    --padding-inline-start: 12px;
-    --padding-inline-end: 48px;
-    --color-accent: #09f;
-    --color-accent-hover: #007acc;
-    --color-surface: #fff;
-    --color-border: #d1d5db;
-    --color-text-primary: #111827;
-    --color-text-secondary: #4b5563;
-    --color-hidden-bg: #e0e0ff;
-    --color-hidden-text: #2d2d8a;
-    --radius: 12px;
-    --shadow-rest: 0 1px 3px rgb(0 0 0 / 8%), 0 1px 2px rgb(0 0 0 / 6%);
-    --shadow-hover:
-        0 10px 25px rgb(0 0 0 / 12%), 0 4px 10px rgb(0 0 0 / 8%);
-    --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --padding-inline-start: 0.75rem;
+    --padding-inline-end: 1.5rem;
 
-    margin-top: 12px;
-}
-
-@keyframes card-entrance {
-    from {
-        opacity: 0;
-        transform: translateY(16px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.earth-block * {
-    margin: 0;
-    padding: 0;
-}
-
-/* Card Container */
-.earth-block > div {
-    width: fit-content;
     width: 100%;
-    max-width: 500px;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius);
-    display: flex;
-    align-items: start;
-    position: relative;
-    background-color: var(--color-surface);
-    box-shadow: var(--shadow-rest);
-    overflow: hidden;
-    transition:
-        box-shadow var(--transition-base),
-        transform var(--transition-base);
-
-    /* Entrance animation */
-    animation: card-entrance 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-/* Image */
-.earth-block picture {
-    display: block;
-    flex-shrink: 0;
-    overflow: hidden;
-}
-
-.earth-block img {
-    max-width: 220px;
-    display: block;
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Content Wrapper */
-.earth-block-content-wrapper {
-    width: 100%;
-    align-self: stretch;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-width: 0;
-}
-
-/* Information Section */
-.earth-block-information-container {
-    padding-block-start: 12px;
-    padding-inline: var(--padding-inline-start) var(--padding-inline-end);
-}
-
-.earth-block-information-container h2 {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--color-text-primary);
-    line-height: 1.2;
-    margin-block-end: 4px;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-    overflow: hidden;
-}
-
-.earth-block-information-container p {
-    font-size: 0.95rem;
-    color: var(--color-text-secondary);
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-    overflow: hidden;
-}
-
-/* Footer */
-.earth-block-footer {
-    font-size: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-}
-
-.earth-block-footer > p {
-    padding-inline: var(--padding-inline-start) var(--padding-inline-end);
-    padding-block: 8px;
-    color: var(--color-text-secondary);
-    font-size: 0.9rem;
-}
-
-/* Expand Button */
-.earth-block button.expand-btn {
-    background-color: transparent;
-    border: 2px solid var(--color-accent);
-    border-radius: 50%;
-    cursor: pointer;
-    width: 26px;
-    height: 26px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-accent);
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-inline-start: 6px;
-    vertical-align: middle;
-    transition:
-        background-color var(--transition-base),
-        color var(--transition-base),
-        transform var(--transition-base),
-        border-color var(--transition-base);
-}
-
-.earth-block button.expand-btn[aria-expanded="true"] {
-    background-color: var(--color-accent);
-    color: #fff;
-    transform: rotate(45deg);
-}
-
-/* Hidden Paragraph (animated reveal) */
-.earth-block-footer .earth-block-hidden-paragraph {
-    width: 100%;
-    padding-inline: var(--padding-inline-start);
-    font-size: 1.25rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    background: linear-gradient(135deg, var(--color-hidden-bg), #c7c7ff);
-    color: var(--color-hidden-text);
-    text-align: center;
-    border-top: 1px solid var(--color-border);
-
-    /* Animated reveal */
+    max-width: 600px;
+    border: 1px solid #000;
     display: grid;
-    grid-template-rows: 1fr;
-    opacity: 1;
-    padding-block: 10px;
-    transition:
-        grid-template-rows 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-        opacity 0.3s ease,
-        padding-block 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
+    grid-template-columns: 1fr;
 
-.earth-block-hidden-paragraph > span {
-    overflow: hidden;
-}
+    @media screen and (width >= 768px) {
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto;
+    }
 
-.earth-block-hidden-paragraph.collapsed {
-    grid-template-rows: 0fr;
-    opacity: 0;
-    padding-block: 0;
-    border-top-color: transparent;
-}
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+        margin: 0;
+        padding: 0;
+    }
 
-/* Focus Visible (a11y) */
-.earth-block button.expand-btn:focus-visible {
-    outline: 2px solid var(--color-accent);
-    outline-offset: 3px;
-}
+    & > div {
+        display: block;
 
-/* === Responsive Design === */
-@media (width <= 480px) {
-    .earth-block > div {
+        @media screen and (width >= 768px) {
+            display: contents;
+        }
+    }
+
+    & > div:first-child div:first-child {
+        grid-row: 1 / 3;
+        background-color: #000;
+    }
+
+    & > div:last-child div:first-child {
+        display: none;
+    }
+
+    .content-container {
+        display: flex;
         flex-direction: column;
-        width: 100%;
+        padding-inline: var(--padding-inline-start) var(--padding-inline-end);
+        margin-block-start: 0.5rem;
+
+        @media screen and (width >= 768px) {
+            height: 160px;
+        }
+
+        > :first-child {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            line-clamp: 1;
+            overflow: hidden;
+        }
+
+        > :first-child + p {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            overflow: hidden;
+        }
     }
 
-    .earth-block img {
-        max-width: 100%;
+    .hidden-content {
         width: 100%;
-        aspect-ratio: 16 / 10;
+        padding-inline: var(--padding-inline-start) var(--padding-inline-end);
+        font-size: 2rem;
+        text-transform: uppercase;
+        background-color: #bebeff;
+        border-top: 1px solid #111;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .interactive-element {
+        margin-block-start: 2rem;
+
+        @media screen and (width >= 768px) {
+            margin-block-start: auto;
+        }
+    }
+
+    .image-container img {
+        width: 100%;
+        vertical-align: top;
         object-fit: cover;
+
+        @media screen and (width >= 768px) {
+            max-width: 250px;
+        }
     }
 
-    .earth-block-information-container {
-        padding-block-start: 16px;
+    .expand-btn {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        padding-inline: 0.25rem;
+        font-size: 1.25rem;
     }
 
-    .earth-block-information-container h2 {
-        font-size: 1.6rem;
-    }
-
-    .earth-block-footer > p {
-        padding-block: 12px;
-    }
-
-    .earth-block-hidden-paragraph {
-        font-size: 1.6rem;
-    }
-}
-
-/* === Dark Mode === */
-.earth-block.dark {
-    --color-accent: #38bdf8;
-    --color-accent-hover: #7dd3fc;
-    --color-surface: #1e1e2e;
-    --color-border: #3b3b50;
-    --color-text-primary: #f1f5f9;
-    --color-text-secondary: #e9ecf0;
-    --color-hidden-bg: #2e2e5c;
-    --color-hidden-text: #a5a5f0;
-    --shadow-rest: 0 1px 3px rgb(0 0 0 / 30%), 0 1px 2px rgb(0 0 0 / 20%);
-    --shadow-hover:
-        0 10px 25px rgb(0 0 0 / 40%), 0 4px 10px rgb(0 0 0 / 30%);
-}
-
-.earth-block.dark .earth-block-hidden-paragraph {
-    background: linear-gradient(135deg, var(--color-hidden-bg), #3a3a6e);
-}
-
-/* Theme Toggle Button */
-.earth-block-theme-toggle {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 1rem;
-    line-height: 1;
-    box-shadow: 0 1px 4px rgb(0 0 0 / 10%);
-    transition:
-        background-color var(--transition-base),
-        border-color var(--transition-base),
-        transform var(--transition-base);
-    z-index: 1;
-}
-
-.earth-block-theme-toggle:focus-visible {
-    outline: 2px solid var(--color-accent);
-    outline-offset: 3px;
-}
-
-/* Reduced motion (a11y) */
-@media (prefers-reduced-motion: reduce) {
-    .earth-block > div,
-    .earth-block img,
-    .earth-block button.expand-btn,
-    .earth-block-hidden-paragraph,
-    .earth-block-theme-toggle {
-        animation: none;
-        transition: none;
-    }
-
-    .earth-block > div {
-        animation: none;
-    }
-}
-
-/* === Hover effects === */
-@media (hover: hover) {
-    .earth-block-theme-toggle:hover {
-        transform: scale(1.1);
-    }
-
-    .earth-block > div:hover {
-        box-shadow: var(--shadow-hover);
-        transform: translateY(-2px);
-    }
-
-    .earth-block > div:hover img {
-        transform: scale(1.04);
-    }
-
-    .earth-block button.expand-btn:hover {
-        background-color: var(--color-accent);
-        color: #fff;
-        transform: scale(1.15);
-    }
-
-    .earth-block button.expand-btn[aria-expanded="true"]:hover {
-        background-color: var(--color-accent-hover);
-        border-color: var(--color-accent-hover);
-        transform: rotate(45deg) scale(1.15);
+    .hidden {
+        display: none;
     }
 }
