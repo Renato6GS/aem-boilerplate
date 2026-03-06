@@ -4,7 +4,13 @@ Custom block built with Adobe EDS that displays an interactive information card 
 
 ## Demo
 
-📹 [Video demo](LINK_HERE)
+[Video demo](https://drive.google.com/file/d/1PRbuMgWsEzOVq5gJ8-vv-xW4GHNJ4xy4/view?usp=sharing)
+
+## Sites
+
+The sites are:
+[Publish](https://main--aem-boilerplate--renato6gs.aem.page/)
+[Preview](https://main--aem-boilerplate--renato6gs.aem.live/)
 
 ## Project Structure
 
@@ -22,11 +28,3 @@ The block is authored in a da.live document. The first row contains two columns:
 |-------------|--------------------------|
 | [image]     | Heading and paragraph text |
 | [Empty] | Hidden content  |
-
-## Project Structure
-
-```
-/blocks/earth-block/
-├── earth-block.js     # Block decoration logic and event handling
-├── earth-block.css    # Styles and responsive rules
-```
