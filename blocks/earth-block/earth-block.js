@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 export default function decorate(block) {
   const CONFIG = {
     TITLE_BLOCK: 'h2',
@@ -36,7 +35,7 @@ export default function decorate(block) {
   imageContainer.classList.add(CONFIG.IMAGE_CONTAINER_CLASS);
 
   const lastElement = contentContainer.lastElementChild;
-  if (lastElement.length === 0) return;
+  if (!lastElement) return;
 
   lastElement.classList.add(CONFIG.INTERACTIVE_ELEMENT_CLASS);
 
