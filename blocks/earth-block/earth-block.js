@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 export default function decorate(block) {
   const CONFIG = {
     TITLE_BLOCK: 'h2',
